@@ -23,8 +23,8 @@ class SendNoteCreatedNotifications implements ShouldQueue
      */
     public function handle(NoteCreated $event): void
     {
-        foreach (User::whereNot('id', $event->note->user_id)->cursor() as $user) {
-            $user->notify(new NewNote($event->note));
-        }
+//        foreach (User::whereNot('id', $event->note->user_id)->cursor() as $user) {
+//            $user->notify(new NewNote($event->note));
+//        }
     }
 }
