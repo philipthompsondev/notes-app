@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\NoteCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,6 +13,10 @@ class Note extends Model
 
     protected $fillable = [
         'message',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => NoteCreated::class,
     ];
 
     public function user(): BelongsTo
