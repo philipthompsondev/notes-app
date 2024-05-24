@@ -6,6 +6,7 @@ use App\Events\NoteCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Note extends Model
 {
@@ -22,5 +23,10 @@ class Note extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function labels(): HasMany
+    {
+        return $this->hasMany(Label::class);
     }
 }
