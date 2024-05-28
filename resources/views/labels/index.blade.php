@@ -8,4 +8,10 @@
             <x-primary-button class="mt-4">{{ __('New Label') }}</x-primary-button>
         </form>
     </div>
+
+    <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+        @foreach ($labels as $label)
+            <p class="mt-4 text-lg text-gray-900">{{ $label->label }}</p>
+        @endforeach
+    </div>
 </x-app-layout>

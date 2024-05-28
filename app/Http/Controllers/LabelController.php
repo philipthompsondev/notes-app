@@ -12,7 +12,9 @@ class LabelController extends Controller
      */
     public function index()
     {
-        return view('labels.index');
+        return view('labels.index', [
+            'labels' => Label::with('user')->latest()->get(),
+        ]);
     }
 
     /**
