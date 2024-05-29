@@ -55,6 +55,7 @@ class NoteController extends Controller
      */
     public function edit(Note $note): View
     {
+        dd('here');
         Gate::authorize('update', $note);
 
         return view('notes.edit', [

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Label;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class LabelController extends Controller
 {
@@ -52,7 +53,11 @@ class LabelController extends Controller
      */
     public function edit(Label $label)
     {
-        //
+        Gate::authorize('update', $label);
+
+        return view('labels.edit', [
+            'label' => $label,
+        ]);
     }
 
     /**
@@ -60,7 +65,13 @@ class LabelController extends Controller
      */
     public function update(Request $request, Label $label)
     {
-        //
+        Gate::authorize('update', $label);
+        $validated = $request->validate([
+            'label' => 'required|string|max:25',
+        ]);
+        $label->update($validated);
+
+        return redirect(route('labels.index'));
     }
 
     /**
@@ -68,6 +79,8 @@ class LabelController extends Controller
      */
     public function destroy(Label $label)
     {
-        //
+        Gate::authorize('delete', $label);
+        $label->delete();
+        return redirect(route('labels.index'));
     }
 }
