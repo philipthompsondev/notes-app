@@ -46,6 +46,9 @@
                                                 {{ __('Delete') }}
                                             </x-dropdown-link>
                                         </form>
+                                        <x-dropdown-link :href="route('notes.edit', $note)">
+                                            {{ __('Add Label') }}
+                                        </x-dropdown-link>
                                     </x-slot>
                                 </x-dropdown>
                             @endif

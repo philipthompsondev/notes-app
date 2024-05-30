@@ -12,6 +12,10 @@
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
                 <a href="{{ route('notes.index') }}">{{ __('Cancel') }}</a>
             </div>
+
+            @foreach($labels as $label)
+                <input type="checkbox" id="labels" name="labels"> <label for="labels">{{ $label["label"] }}</label>
+            @endforeach
         </form>
     </div>
 </x-app-layout>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Label;
 use App\Models\Note;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class NoteController extends Controller
     {
         return view('notes.index', [
             'notes' => Note::with('user')->latest()->get(),
+            'labels' => Label::all()
         ]);
     }
 
@@ -55,11 +57,11 @@ class NoteController extends Controller
      */
     public function edit(Note $note): View
     {
-        dd('here');
         Gate::authorize('update', $note);
 
         return view('notes.edit', [
             'note' => $note,
+            'labels' => Label::all()
         ]);
     }
 
