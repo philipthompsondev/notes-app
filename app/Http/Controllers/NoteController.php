@@ -6,6 +6,7 @@ use App\Models\Label;
 use App\Models\Note;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
@@ -35,11 +36,17 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->labels);
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
 
-        $request->user()->notes()->create($validated);
+        $note = new Note();
+        $note->user_id = Auth::id();
+        $note->message = $validated['message'];
+
+        $note->save();
+        $note->labels()->attach($request->labels);
 
         return redirect(route('notes.index'));
     }
