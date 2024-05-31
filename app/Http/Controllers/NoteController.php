@@ -66,6 +66,7 @@ class NoteController extends Controller
     {
         Gate::authorize('update', $note);
 
+        $selected_labels = [];
         foreach ($note->labels as $label) {
             $selected_labels[] = $label->id;
         }
@@ -83,10 +84,14 @@ class NoteController extends Controller
     public function update(Request $request, Note $note): RedirectResponse
     {
         Gate::authorize('update', $note);
+
+//        dd($request->label_note);
+
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
         $note->update($validated);
+        $note->labels()->sync($request->label_note);
 
         return redirect(route('notes.index'));
     }
