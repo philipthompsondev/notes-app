@@ -66,9 +66,14 @@ class NoteController extends Controller
     {
         Gate::authorize('update', $note);
 
+        foreach ($note->labels as $label) {
+            $selected_labels[] = $label->id;
+        }
+
         return view('notes.edit', [
             'note' => $note,
-            'labels' => Label::all()
+            'labels' => Label::all(),
+            'selected_labels' => $selected_labels
         ]);
     }
 
