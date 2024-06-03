@@ -49,14 +49,15 @@
                                                 {{ __('Delete') }}
                                             </x-dropdown-link>
                                         </form>
-                                        <x-dropdown-link :href="route('notes.edit', $note)">
-                                            {{ __('Add Label') }}
-                                        </x-dropdown-link>
                                     </x-slot>
                                 </x-dropdown>
                             @endif
                         </div>
                         <p class="mt-4 text-lg text-gray-900">{{ $note->message }}</p>
+
+                        @foreach($note->labels as $label)
+                            {{ $label->label }}
+                        @endforeach
                     </div>
                 </div>
             @endforeach
