@@ -22,10 +22,6 @@
         @foreach ($notes as $note)
             <div class="bg-amber-200 rounded-lg px-2 py-2">
                 <div class="">
-                    <div>
-                        <span class="text-gray-800">{{ $note->user->name }}</span>
-                        <small class="ml-2 text-sm text-gray-600">{{ $note->created_at->format('j M Y, g:i a') }}</small>
-                    </div>
                     @if ($note->user->is(auth()->user()))
                         <x-dropdown>
                             <x-slot name="trigger">
@@ -53,15 +49,24 @@
 
                 <p>{{ $note->message }}</p>
 
-                <div class="">
+                <div class="flex flex-wrap gap-1">
                     @foreach($note->labels as $label)
-                        <div class="bg-slate-50 m-1 p-1">
-                            {{ $label->label }}
-                        </div>
+                        <form method="POST" action="{{ route('labels.destroy', $label) }}">
+                            @csrf
+                            @method('delete')
+                            <x-notes.label
+                                :label="$label->label"
+                                :href="route('labels.destroy', $label)"
+                                onclick="
+                                    event.preventDefault();
+                                    this.closest('form').submit();
+                                ">
+                            </x-notes.label>
+                        </form>
+
                     @endforeach
                 </div>
             </div>
         @endforeach
-
     </div>
 </x-app-layout>
