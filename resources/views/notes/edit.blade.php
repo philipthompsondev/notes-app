@@ -1,17 +1,15 @@
-<?php
-//    dd($labels);
-    ?>
-
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
         <form method="POST" action="{{ route('notes.update', $note) }}">
             @csrf
             @method('patch')
+
+            <input type="text" name="title" value="{{ $note->title }}">
+
             <textarea
                 name="message"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-            >{{ old('message', $note->message) }}</textarea>
-
+                >{{ old('message', $note->message) }}</textarea>
 
             @foreach($labels as $label)
                 <input type="checkbox" name="label_note[]" value="{{ $label->id }}" {{ in_array($label->id, $selected_labels) ? 'checked' : '' }}> <label for="labels">{{ $label->label }}</label>

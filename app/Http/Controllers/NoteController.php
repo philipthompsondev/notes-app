@@ -36,13 +36,14 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->labels);
         $validated = $request->validate([
-            'message' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'message' => 'required|string',
         ]);
 
         $note = new Note();
         $note->user_id = Auth::id();
+        $note->title = $validated['title'];
         $note->message = $validated['message'];
 
         $note->save();
@@ -85,9 +86,8 @@ class NoteController extends Controller
     {
         Gate::authorize('update', $note);
 
-//        dd($request->label_note);
-
         $validated = $request->validate([
+            'title' => 'required|string|max:255',
             'message' => 'required|string|max:255',
         ]);
         $note->update($validated);

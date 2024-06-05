@@ -3,6 +3,9 @@
         <div class="col-span-2 row-span-2 bg-slate-200 rounded-lg px-2 py-2">
             <form method="POST" action="{{ route('notes.store') }}">
                 @csrf
+
+                <input type="text" name="title" placeholder="Note Title">
+
                 <textarea
                     name="message"
                     placeholder="{{ __('Write something down.') }}"
@@ -14,6 +17,7 @@
                             for="{{ $label["label"] }}">{{ $label["label"] }}</label>
                     @endforeach
                 </div>
+                <x-input-error :messages="$errors->get('title')" class="mt-2" />
                 <x-input-error :messages="$errors->get('message')" class="mt-2" />
                 <x-primary-button class="mt-4">{{ __('New Note') }}</x-primary-button>
             </form>
@@ -47,6 +51,7 @@
                     @endif
                 </div>
 
+                <h3>{{ $note->title }}</h3>
                 <p>{{ $note->message }}</p>
 
                 <div class="flex flex-wrap gap-1">
