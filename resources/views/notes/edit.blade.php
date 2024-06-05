@@ -4,11 +4,11 @@
             @csrf
             @method('patch')
 
-            <input type="text" name="title" value="{{ $note->title }}">
+            <input type="text" name="title" value="{{ $note->title }}" class="w-full mb-2 p-2 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
 
             <textarea
                 name="message"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                class="w-full h-full p-2 mb-2  border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 >{{ old('message', $note->message) }}</textarea>
 
             @foreach($labels as $label)

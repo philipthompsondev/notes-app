@@ -4,11 +4,12 @@
             <form method="POST" action="{{ route('notes.store') }}">
                 @csrf
 
-                <input type="text" name="title" placeholder="Note Title">
+                <input type="text" name="title" placeholder="Note Title" class="w-full mb-2 p-2 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
 
                 <textarea
                     name="message"
                     placeholder="{{ __('Write something down.') }}"
+                    class="w-full h-full p-2 mb-2  border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 >{{ old('message') }}</textarea>
 
                 <div>
