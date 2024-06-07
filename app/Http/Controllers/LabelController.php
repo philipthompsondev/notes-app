@@ -79,6 +79,7 @@ class LabelController extends Controller
      */
     public function destroy(Label $label)
     {
+//        dd('destroy');
         Gate::authorize('delete', $label);
         $label->delete();
         return redirect(route('labels.index'));
