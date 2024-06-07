@@ -13,6 +13,7 @@ class Label extends Model
 
     protected $fillable = [
         'label',
+        'bg_color'
     ];
 
     public function user(): BelongsTo

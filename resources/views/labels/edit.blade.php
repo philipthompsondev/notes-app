@@ -4,9 +4,17 @@
             @csrf
             @method('patch')
             <label>
-                <input type="text" name="label" value="{{ old('label', $label->label) }}" class="w-full mb-2 p-2 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <input type="text"
+                       name="label"
+                       value="{{ old('label', $label->label) }}"
+                       class="w-full mb-2 p-2 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </label>
-            <x-input-error :messages="$errors->get('message')" class="mt-2" />
+
+            <x-color-picker name="bg_color" value="{{ $label->bg_color }}" />
+
+            <x-input-error :messages="$errors->get('label')" class="mt-2" />
+            <x-input-error :messages="$errors->get('bg_color')" class="mt-2" />
+
             <div class="mt-4 space-x-2">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
                 <a href="{{ route('labels.index') }}">{{ __('Cancel') }}</a>

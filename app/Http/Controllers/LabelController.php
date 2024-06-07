@@ -68,6 +68,7 @@ class LabelController extends Controller
         Gate::authorize('update', $label);
         $validated = $request->validate([
             'label' => 'required|string|max:25',
+            'bg_color' => 'required|string|max:7'
         ]);
         $label->update($validated);
 
@@ -79,7 +80,6 @@ class LabelController extends Controller
      */
     public function destroy(Label $label)
     {
-//        dd('destroy');
         Gate::authorize('delete', $label);
         $label->delete();
         return redirect(route('labels.index'));
