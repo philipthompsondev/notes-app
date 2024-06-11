@@ -12,7 +12,11 @@
     </div>
 
     <div class="grid grid-cols-6 gap-4 mx-10 my-5">
+
+
         @foreach ($labels as $label)
+
+
             <div class="col-span-1 rounded-md border border-slate-300 shadow px-4 py-4 bg-[{{ $label->bg_color }}]">
                 <div class="flex">
                     <p class="text-lg text-gray-900 w-5/6">{{ $label->label }} <small class="ml-2 text-sm text-gray-600"></p>
@@ -26,11 +30,8 @@
                                     </svg>
                                 </button>
                             </x-slot>
-                            <a href="#">Profile</a>
-                            <a href="#">Settings</a>
-                            <a href="#">Logout</a>
                             <x-slot name="content">
-                                {{-- TODO: Users can only edit their labels --}}
+{{--                                 TODO: Users can only edit their labels--}}
 
                                 <x-dropdown-link :href="route('labels.edit', $label)">
                                     {{ __('Edit') }}
@@ -51,15 +52,7 @@
             </div>
         @endforeach
 
-            <x-dropdown class="text-gray-500">
-                <x-slot name="trigger">
-                    <button>Dries</button>
-                </x-slot>
 
-                <a href="#">Profile</a>
-                <a href="#">Settings</a>
-                <a href="#">Logout</a>
-            </x-dropdown>
 
 
     </div>

@@ -14,7 +14,6 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        @bukStyles
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -34,6 +33,5 @@
                 {{ $slot }}
             </main>
         </div>
-        @bukScripts
     </body>
 </html>

@@ -65,6 +65,7 @@ class LabelController extends Controller
      */
     public function update(Request $request, Label $label)
     {
+//        dd($request);
         Gate::authorize('update', $label);
         $validated = $request->validate([
             'label' => 'required|string|max:25',
