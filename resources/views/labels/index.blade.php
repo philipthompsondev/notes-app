@@ -3,9 +3,12 @@
         <form method="POST" action="{{ route('labels.store') }}">
             @csrf
 
-            <label>
-                <input type="text" name="label" class="w-full mb-2 p-2 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-            </label>
+            <label for="label">Label Title</label>
+            <input type="text" name="label" id="label" class="w-full mb-2 p-2 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+
+            <label for="bg_color">Background Color:</label>
+            <input name="bg_color" id="bg_color" type="color" value="#FFFFFF">
+
             <x-input-error :messages="$errors->get('label')" class="mt-2" />
             <x-primary-button class="mt-4">{{ __('New Label') }}</x-primary-button>
         </form>
@@ -16,8 +19,7 @@
 
         @foreach ($labels as $label)
 
-
-            <div class="col-span-1 rounded-md border border-slate-300 shadow px-4 py-4 bg-[{{ $label->bg_color }}]">
+            <div class="col-span-1 rounded-md border border-slate-300 shadow px-4 py-4" style="background-color: {{ $label->bg_color }}">
                 <div class="flex">
                     <p class="text-lg text-gray-900 w-5/6">{{ $label->label }} <small class="ml-2 text-sm text-gray-600"></p>
 
