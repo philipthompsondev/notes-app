@@ -13,8 +13,15 @@
             <label for="bg_color">Background Color:</label>
             <input name="bg_color" id="bg_color" type="color" value="{{ $label->bg_color }}">
 
+            <label for="font_color">Font Color:</label>
+            <input name="font_color" id="font_color" type="color" value="{{ $label->font_color }}">
+
+            <small>Created {{ $label->created_at }}</small>
+            <small>Updated {{ $label->updated_at }}</small>
+
             <x-input-error :messages="$errors->get('label')" class="mt-2" />
             <x-input-error :messages="$errors->get('bg_color')" class="mt-2" />
+            <x-input-error :messages="$errors->get('font_color')" class="mt-2" />
 
             <div class="mt-4 space-x-2">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>

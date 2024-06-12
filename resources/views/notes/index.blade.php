@@ -63,13 +63,13 @@
                 {{-- TODO: Fix label delete on Note Index --}}
                 <div class="flex flex-wrap gap-1">
                     @foreach($note->labels as $label)
-{{--                        {{ dd($label->bg_color) }}--}}
                         <form method="POST" action="{{ route('labels.update', $note) }}">
                             @csrf
                             @method('patch')
                             <x-notes.label
                                 :label="$label->label"
-                                :color="$label->bg_color"
+                                :bgcolor="$label->bg_color"
+                                :fontcolor="$label->font_color"
                                 :href="route('labels.update', $note)"
                                 onclick="
                                     event.preventDefault();

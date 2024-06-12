@@ -13,7 +13,8 @@ class Label extends Component
      */
     public function __construct(
         public string $label,
-        public string $color,
+        public string $bgcolor,
+        public string $fontcolor,
         public string $href
     )
     {

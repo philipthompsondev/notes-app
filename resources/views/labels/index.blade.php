@@ -9,6 +9,9 @@
             <label for="bg_color">Background Color:</label>
             <input name="bg_color" id="bg_color" type="color" value="#FFFFFF">
 
+            <label for="font_color">Font Color:</label>
+            <input name="font_color" id="font_color" type="color" value="#000000">
+
             <x-input-error :messages="$errors->get('label')" class="mt-2" />
             <x-primary-button class="mt-4">{{ __('New Label') }}</x-primary-button>
         </form>
@@ -18,16 +21,15 @@
 
 
         @foreach ($labels as $label)
-
-            <div class="col-span-1 rounded-md border border-slate-300 shadow px-4 py-4" style="background-color: {{ $label->bg_color }}">
+            <div class="col-span-1 rounded-md border border-slate-300 shadow px-4 py-4" style="background-color: {{ $label->bg_color }}; color: {{ $label->font_color }}">
                 <div class="flex">
-                    <p class="text-lg text-gray-900 w-5/6">{{ $label->label }} <small class="ml-2 text-sm text-gray-600"></p>
+                    <p class="text-lg w-5/6">{{ $label->label }}</p>
 
                     <div class="w-1/6 pt-2 float-end">
                         <x-dropdown>
                             <x-slot name="trigger">
                                 <button>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                     </svg>
                                 </button>
@@ -49,7 +51,6 @@
                         </x-dropdown>
                     </div>
                 </div>
-                Created {{ $label->created_at }}</small>
 
             </div>
         @endforeach

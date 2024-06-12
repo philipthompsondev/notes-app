@@ -33,6 +33,8 @@ class LabelController extends Controller
     {
         $validated = $request->validate([
             'label' => 'required|string|max:25',
+            'bg_color' => 'required|string|max:7',
+            'font_color' => 'required|string|max:7',
         ]);
 
         $request->user()->labels()->create($validated);
@@ -65,11 +67,11 @@ class LabelController extends Controller
      */
     public function update(Request $request, Label $label)
     {
-//        dd($request);
         Gate::authorize('update', $label);
         $validated = $request->validate([
             'label' => 'required|string|max:25',
-            'bg_color' => 'required|string|max:7'
+            'bg_color' => 'required|string|max:7',
+            'font_color' => 'required|string|max:7',
         ]);
         $label->update($validated);
 
