@@ -6,11 +6,17 @@
             <label for="label">Label Title</label>
             <input type="text" name="label" id="label" class="w-full mb-2 p-2 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
 
-            <label for="bg_color">Background Color:</label>
-            <input name="bg_color" id="bg_color" type="color" value="#FFFFFF">
+            <div class="grid grid-cols-2">
+                <div class="col-span-1">
+                    <label for="bg_color">Background Color:</label>
+                    <input name="bg_color" id="bg_color" type="color" value="#FFFFFF">
+                </div>
 
-            <label for="font_color">Font Color:</label>
-            <input name="font_color" id="font_color" type="color" value="#000000">
+                <div class="col-span-1">
+                    <label for="font_color">Font Color:</label>
+                    <input name="font_color" id="font_color" type="color" value="#000000">
+                </div>
+            </div>
 
             <x-input-error :messages="$errors->get('label')" class="mt-2" />
             <x-primary-button class="mt-4">{{ __('New Label') }}</x-primary-button>

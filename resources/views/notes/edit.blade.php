@@ -19,13 +19,13 @@
                 class="w-full h-full p-2 mb-2  border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 >{{ old('message', $note->message) }}</textarea>
 
-            <div class="w-full">
-                <div>
+            <div class="grid grid-cols-2">
+                <div class="col-span-1">
                     <label for="bg_color">Background Color:</label>
                     <input name="bg_color" id="bg_color" type="color" value="{{ $note->bg_color }}">
                 </div>
 
-                <div>
+                <div class="col-span-1">
                     <label for="font_color">Font Color:</label>
                     <input name="font_color" id="font_color" type="color" value="{{ $note->font_color }}">
                 </div>
@@ -35,6 +35,14 @@
                 @foreach($labels as $label)
                     <input type="checkbox" name="label_note[]" value="{{ $label->id }}" {{ in_array($label->id, $selected_labels) ? 'checked' : '' }}> <label for="labels">{{ $label->label }}</label>
                 @endforeach
+            </div>
+
+            <div class="w-full">
+                <small>Created {{ $note->created_at }}</small>
+            </div>
+
+            <div class="w-full">
+                <small>Updated {{ $note->updated_at }}</small>
             </div>
 
             <div class="w-full">

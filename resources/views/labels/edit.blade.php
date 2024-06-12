@@ -10,14 +10,25 @@
                value="{{ old('label', $label->label) }}"
                class="w-full mb-2 p-2 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
 
-            <label for="bg_color">Background Color:</label>
-            <input name="bg_color" id="bg_color" type="color" value="{{ $label->bg_color }}">
+            <div class="grid grid-cols-2">
+                <div class="col-span-1">
+                    <label for="bg_color">Background Color:</label>
+                    <input name="bg_color" id="bg_color" type="color" value="{{ $label->bg_color }}">
+                </div>
 
-            <label for="font_color">Font Color:</label>
-            <input name="font_color" id="font_color" type="color" value="{{ $label->font_color }}">
+                <div class="col-span-1">
+                    <label for="font_color">Font Color:</label>
+                    <input name="font_color" id="font_color" type="color" value="{{ $label->font_color }}">
+                </div>
+            </div>
 
-            <small>Created {{ $label->created_at }}</small>
-            <small>Updated {{ $label->updated_at }}</small>
+            <div class="w-full">
+                <small>Created {{ $label->created_at }}</small>
+            </div>
+
+            <div class="w-full">
+                <small>Updated {{ $label->updated_at }}</small>
+            </div>
 
             <x-input-error :messages="$errors->get('label')" class="mt-2" />
             <x-input-error :messages="$errors->get('bg_color')" class="mt-2" />
