@@ -93,7 +93,9 @@ class NoteController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'message' => 'required|string|max:255'
+            'message' => 'required|string|max:255',
+            'bg_color' => 'required|string',
+            'font_color' => 'required|string',
         ]);
 
         $note->update($validated);

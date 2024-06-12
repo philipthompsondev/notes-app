@@ -38,7 +38,7 @@
         </div>
 
         @foreach ($notes as $note)
-            <div class="bg-amber-200 rounded-lg px-2 py-2">
+            <div class="rounded-lg px-2 py-2" style="background-color: {{ $note->bg_color }}; color: {{ $note->font_color }}">
                 <div class="flex">
                     <h3 class="w-5/6 font-bold">{{ $note->title }}</h3>
                     <div class="w-1/6">
