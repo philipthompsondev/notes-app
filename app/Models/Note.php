@@ -16,6 +16,8 @@ class Note extends Model
     protected $fillable = [
         'title',
         'message',
+        'bg_color',
+        'font_color'
     ];
 
     protected $dispatchesEvents = [

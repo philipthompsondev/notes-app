@@ -36,15 +36,20 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request);
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'message' => 'required|string',
+            'bg_color' => 'required|string',
+            'font_color' => 'required|string',
         ]);
 
         $note = new Note();
         $note->user_id = Auth::id();
         $note->title = $validated['title'];
         $note->message = $validated['message'];
+        $note->bg_color =  $validated['bg_color'];
+        $note->font_color =  $validated['font_color'];
 
         $note->save();
         $note->labels()->attach($request->labels);
@@ -88,8 +93,9 @@ class NoteController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'message' => 'required|string|max:255',
+            'message' => 'required|string|max:255'
         ]);
+
         $note->update($validated);
         $note->labels()->sync($request->label_note);
 
