@@ -46,7 +46,10 @@
             </div>
 
             <div class="w-full">
+                <x-input-error :messages="$errors->get('title')" class="mt-2" />
                 <x-input-error :messages="$errors->get('message')" class="mt-2" />
+                <x-input-error :messages="$errors->get('bg_color')" class="mt-2" />
+                <x-input-error :messages="$errors->get('font_color')" class="mt-2" />
             </div>
 
             <div class="mt-4 space-x-2 w-full">
