@@ -57,5 +57,7 @@
                 <a href="{{ route('notes.index') }}">{{ __('Cancel') }}</a>
             </div>
         </form>
+
     </div>
+
 </x-app-layout>
