@@ -29,7 +29,7 @@
         <div class="bg-slate-50 border border-slate-400 rounded-md divide-y">
             @foreach($user->tokens as $token)
                 <div class="py-2 px-2">
-                    {{ $token->name }}
+                    {{ $token->name }} <a ><i class="fa-solid fa-xmark right-0"></i></a>
                 </div>
             @endforeach
         </div>
