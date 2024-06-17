@@ -24,7 +24,14 @@
         </div>
     </form>
 
-    @foreach($user->tokens as $token)
-        {{ $token->name }}
-    @endforeach
+    <div class="my-4">
+        Tokens:
+        <div class="bg-slate-50 border border-slate-400 rounded-md divide-y">
+            @foreach($user->tokens as $token)
+                <div class="py-2 px-2">
+                    {{ $token->name }}
+                </div>
+            @endforeach
+        </div>
+    </div>
 </section>
