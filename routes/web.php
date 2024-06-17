@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
@@ -17,6 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile', [ApiController::class, 'create_token'])->name('api.token');
 });
 
 Route::resource('notes', NoteController::class)
@@ -28,3 +30,5 @@ Route::resource('labels', LabelController::class)
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
+
+
