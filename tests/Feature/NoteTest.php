@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\Note;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class NoteTest extends TestCase
@@ -46,5 +46,41 @@ class NoteTest extends TestCase
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect('/notes');
+
+        $note = Note::latest()->first();
+
+        $this->assertSame('Test Title', $note->title);
+        $this->assertSame('Test Message', $note->message);
+        $this->assertSame('#FFFFFF', $note->bg_color);
+        $this->assertSame('#000000', $note->font_color);
+    }
+
+    /**
+     * @throws \JsonException
+     */
+    public function test_note_update(): void
+    {
+        $note = Note::factory()->create();
+        $user = User::find($note->user_id);
+
+        $response = $this
+            ->actingAs($user)
+            ->patch('/notes/'.$note->id, [
+                'title' => 'Test Title',
+                'message' => 'Test Message',
+                'bg_color' => '#FFFFFF',
+                'font_color' => '#000000',
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/notes');
+
+        $editedNote = Note::latest()->first();
+
+        $this->assertSame('Test Title', $editedNote->title);
+        $this->assertSame('Test Message', $editedNote->message);
+        $this->assertSame('#FFFFFF', $editedNote->bg_color);
+        $this->assertSame('#000000', $editedNote->font_color);
     }
 }
