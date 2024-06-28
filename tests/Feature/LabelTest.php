@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Models\Label;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class LabelTest extends TestCase
@@ -43,5 +43,38 @@ class LabelTest extends TestCase
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect('/labels');
+
+        $label = Label::latest()->first();
+
+        $this->assertSame('Test Label', $label->label);
+        $this->assertSame('#FFFFFF', $label->bg_color);
+        $this->assertSame('#000000', $label->font_color);
+    }
+
+    /**
+     * @throws \JsonException
+     */
+    public function test_label_update(): void
+    {
+        $label = Label::factory()->create();
+        $user = User::find($label->user_id);
+
+        $response = $this
+            ->actingAs($user)
+            ->patch('/labels/'.$label->id, [
+                'label' => 'Edited Label',
+                'bg_color' => '#FFFFFF',
+                'font_color' => '#000000',
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/labels');
+
+        $editedLabel = Label::latest()->first();
+
+        $this->assertSame('Edited Label', $editedLabel->label);
+        $this->assertSame('#FFFFFF', $editedLabel->bg_color);
+        $this->assertSame('#000000', $editedLabel->font_color);
     }
 }
