@@ -14,7 +14,7 @@ class LabelTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    public function test_labels_page_is_displayed(): void
     {
         $user = User::factory()->create();
 
@@ -62,6 +62,7 @@ class LabelTest extends TestCase
             ]);
 
         $response
+            ->assertStatus(200)
             ->assertOk();
     }
 

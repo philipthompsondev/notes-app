@@ -66,6 +66,7 @@ class NoteTest extends TestCase
             ]);
 
         $response
+            ->assertStatus(200)
             ->assertOk();
     }
 
