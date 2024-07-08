@@ -51,6 +51,20 @@ class LabelTest extends TestCase
         $this->assertSame('#000000', $label->font_color);
     }
 
+    public function test_note_edit(){
+        $label = Label::factory()->create();
+        $user = User::find($label->user_id);
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/labels/'.$label->id.'/edit', [
+                $label
+            ]);
+
+        $response
+            ->assertOk();
+    }
+
     /**
      * @throws \JsonException
      */
@@ -76,5 +90,23 @@ class LabelTest extends TestCase
         $this->assertSame('Edited Label', $editedLabel->label);
         $this->assertSame('#FFFFFF', $editedLabel->bg_color);
         $this->assertSame('#000000', $editedLabel->font_color);
+    }
+
+    /**
+     * @throws \JsonException
+     */
+    public function test_note_delete(){
+        $label = Label::factory()->create();
+        $user = User::find($label->user_id);
+
+        $response = $this
+            ->actingAs($user)
+            ->delete('/labels/'.$label->id, [
+                $label
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/labels/');
     }
 }

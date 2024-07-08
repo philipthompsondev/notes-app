@@ -55,6 +55,20 @@ class NoteTest extends TestCase
         $this->assertSame('#000000', $note->font_color);
     }
 
+    public function test_note_edit(){
+        $note = Note::factory()->create();
+        $user = User::find($note->user_id);
+
+        $response = $this
+            ->actingAs($user)
+            ->get('/notes/'.$note->id.'/edit', [
+                $note
+            ]);
+
+        $response
+            ->assertOk();
+    }
+
     /**
      * @throws \JsonException
      */
@@ -82,5 +96,23 @@ class NoteTest extends TestCase
         $this->assertSame('Test Message', $editedNote->message);
         $this->assertSame('#FFFFFF', $editedNote->bg_color);
         $this->assertSame('#000000', $editedNote->font_color);
+    }
+
+    /**
+     * @throws \JsonException
+     */
+    public function test_note_delete(){
+        $note = Note::factory()->create();
+        $user = User::find($note->user_id);
+
+        $response = $this
+            ->actingAs($user)
+            ->delete('/notes/'.$note->id, [
+                $note
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/notes/');
     }
 }
