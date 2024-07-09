@@ -11,10 +11,7 @@ class LabelTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     */
-    public function test_labels_page_is_displayed(): void
+    public function testLabelIndex(): void
     {
         $user = User::factory()->create();
 
@@ -28,7 +25,7 @@ class LabelTest extends TestCase
     /**
      * @throws \JsonException
      */
-    public function test_note_create(): void
+    public function testLabelStore(): void
     {
         $user = User::factory()->create();
 
@@ -51,7 +48,8 @@ class LabelTest extends TestCase
         $this->assertSame('#000000', $label->font_color);
     }
 
-    public function test_note_edit(){
+    public function testLabelEdit()
+    {
         $label = Label::factory()->create();
         $user = User::find($label->user_id);
 
@@ -69,7 +67,7 @@ class LabelTest extends TestCase
     /**
      * @throws \JsonException
      */
-    public function test_label_update(): void
+    public function testLabelUpdate(): void
     {
         $label = Label::factory()->create();
         $user = User::find($label->user_id);
@@ -96,7 +94,8 @@ class LabelTest extends TestCase
     /**
      * @throws \JsonException
      */
-    public function test_note_delete(){
+    public function testLabelDestroy()
+    {
         $label = Label::factory()->create();
         $user = User::find($label->user_id);
 

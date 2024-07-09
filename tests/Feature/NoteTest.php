@@ -11,10 +11,7 @@ class NoteTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     */
-    public function test_notes_page_is_displayed(): void
+    public function testNoteIndex(): void
     {
         $user = User::factory()->create();
 
@@ -30,7 +27,7 @@ class NoteTest extends TestCase
     /**
      * @throws \JsonException
      */
-    public function test_note_create(): void
+    public function testNoteStore(): void
     {
         $user = User::factory()->create();
 
@@ -55,7 +52,8 @@ class NoteTest extends TestCase
         $this->assertSame('#000000', $note->font_color);
     }
 
-    public function test_note_edit(){
+    public function testNoteEdit()
+    {
         $note = Note::factory()->create();
         $user = User::find($note->user_id);
 
@@ -73,7 +71,7 @@ class NoteTest extends TestCase
     /**
      * @throws \JsonException
      */
-    public function test_note_update(): void
+    public function testNoteUpdate(): void
     {
         $note = Note::factory()->create();
         $user = User::find($note->user_id);
@@ -102,7 +100,8 @@ class NoteTest extends TestCase
     /**
      * @throws \JsonException
      */
-    public function test_note_delete(){
+    public function testNoteDestroy()
+    {
         $note = Note::factory()->create();
         $user = User::find($note->user_id);
 
