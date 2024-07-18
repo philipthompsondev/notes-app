@@ -9,15 +9,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class NoteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(): Response
     {
-        return view('notes.index', [
+        return Inertia::render('Notes/Index', [
             'notes' => Note::with('user')->latest()->get(),
             'labels' => Label::all()
         ]);

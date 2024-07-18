@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Inertia\Inertia;
 
 class LabelController extends Controller
 {
@@ -13,7 +14,7 @@ class LabelController extends Controller
      */
     public function index()
     {
-        return view('labels.index', [
+        return Inertia::render('Labels/Index', [
             'labels' => Label::with('user')->latest()->get(),
         ]);
     }
