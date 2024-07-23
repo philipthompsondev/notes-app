@@ -3,8 +3,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { useForm, Head } from '@inertiajs/react';
+import Note from '@/Components/Note';
 
-export default function Index({ auth }) {
+export default function Index({ auth, notes }) {
     const { data, setData, post, processing, reset, errors } = useForm({
         message: '',
     });
@@ -16,7 +17,7 @@ export default function Index({ auth }) {
 
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Notes" />
+            <Head title="Notes"/>
 
             <div className="grid grid-cols-5 gap-4 mx-10 my-5">
                 <div className="col-span-2 row-span-2 bg-slate-200 rounded-lg px-2 py-2">
@@ -67,6 +68,11 @@ export default function Index({ auth }) {
                 </div>
             </div>
 
+            <div className="grid grid-cols-5 gap-4 mx-10 my-5">
+                {notes.map(note =>
+                    <Note key={note.id} note={note}/>
+                )}
+            </div>
         </AuthenticatedLayout>
     );
 }

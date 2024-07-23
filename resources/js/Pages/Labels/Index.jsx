@@ -3,8 +3,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { useForm, Head } from '@inertiajs/react';
+import Label from "@/Components/Label.jsx";
 
-export default function Index({ auth }) {
+export default function Index({ auth, labels }) {
     const { data, setData, post, processing, reset, errors } = useForm({
         message: '',
     });
@@ -56,6 +57,11 @@ export default function Index({ auth }) {
                 </form>
             </div>
 
+            <div className="grid grid-cols-5 gap-4 mx-10 my-5">
+                {labels.map(label =>
+                    <Label key={label.id} label={label}/>
+                )}
+            </div>
         </AuthenticatedLayout>
     );
 }
