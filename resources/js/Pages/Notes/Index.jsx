@@ -4,6 +4,7 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { useForm, Head } from '@inertiajs/react';
 import Note from '@/Components/Note';
+import ColorPicker from "@/Components/ColorPicker.jsx";
 
 export default function Index({ auth, notes }) {
     const { data, setData, post, processing, reset, errors } = useForm({
@@ -18,6 +19,7 @@ export default function Index({ auth, notes }) {
     return (
         <AuthenticatedLayout user={auth.user}>
             <Head title="Notes"/>
+
 
             <div className="grid grid-cols-5 gap-4 mx-10 my-5">
                 <div className="col-span-2 row-span-2 bg-slate-200 rounded-lg px-2 py-2">
@@ -39,23 +41,13 @@ export default function Index({ auth, notes }) {
 
                         <div className="grid grid-cols-2">
                             <div className="col-span-1">
-                                <label htmlFor="bg_color">Background Color:</label>
-                                <input
-                                    name="bg_color"
-                                    id="bg_color"
-                                    type="color"
-                                    value="#FFFFFF"
-                                    onChange={e => setData('bg_color', e.target.value)}/>
+                                <label htmlFor="bg_color">BG Color:</label>
+                                <ColorPicker />
                             </div>
 
                             <div className="col-span-1">
                                 <label htmlFor="font_color">Font Color:</label>
-                                <input
-                                    name="font_color"
-                                    id="font_color"
-                                    type="color"
-                                    value="#000000"
-                                    onChange={e => setData('font_color', e.target.value)}/>
+                                <ColorPicker />
                             </div>
                         </div>
 
