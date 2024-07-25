@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -14,6 +14,20 @@ export default function Index({ auth, labels }) {
         e.preventDefault();
         post(route('labels.store'), { onSuccess: () => reset() });
     };
+
+    const [bgColor, setBgColor] = useState("#FFFFFF");
+
+    const [fontColor, setFontColor] = useState("#000000");
+
+    function handleBgColorChange(event){
+        setBgColor(event.target.value);
+        setData('bg_color', event.target.value);
+    }
+
+    function handleFontColorChange(event){
+        setFontColor(event.target.value);
+        setData('font_color', event.target.value);
+    }
 
     return (
         <AuthenticatedLayout user={auth.user}>
@@ -31,22 +45,22 @@ export default function Index({ auth, labels }) {
                     <div className="grid grid-cols-2">
                         <div className="col-span-1">
                             <label htmlFor="bg_color">Background Color:</label>
-                            <input
-                                name="bg_color"
-                                id="bg_color"
-                                type="color"
-                                value="#FFFFFF"
-                                onChange={e => setData('bg_color', e.target.value)}/>
+                            <input name='bg_color'
+                                   id='bg_color'
+                                   type="color"
+                                   value={bgColor}
+                                   onChange={handleBgColorChange}
+                            />
                         </div>
 
                         <div className="col-span-1">
                             <label htmlFor="font_color">Font Color:</label>
-                            <input
-                                name="font_color"
-                                id="font_color"
-                                type="color"
-                                value="#000000"
-                                onChange={e => setData('font_color', e.target.value)}/>
+                            <input name='font_color'
+                                   id='font_color'
+                                   type="color"
+                                   value={fontColor}
+                                   onChange={handleFontColorChange}
+                            />
                         </div>
                     </div>
 
