@@ -6,13 +6,14 @@ use App\Models\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class LabelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Labels/Index', [
             'labels' => Label::with('user')->latest()->get(),

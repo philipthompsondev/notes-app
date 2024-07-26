@@ -32,6 +32,7 @@ export default function Index({ auth, notes }) {
     return (
         <AuthenticatedLayout user={auth.user}>
             <Head title="Notes"/>
+
             <div className="grid grid-cols-5 gap-4 mx-10 my-5">
                 <div className="col-span-2 row-span-2 bg-slate-200 rounded-lg px-2 py-2">
                     <form onSubmit={submit}>
@@ -68,7 +69,7 @@ export default function Index({ auth, notes }) {
                                        id='font_color'
                                        type="color"
                                        value={fontColor}
-                                    onChange={handleFontColorChange}
+                                       onChange={handleFontColorChange}
                                 />
                             </div>
                         </div>
@@ -82,9 +83,8 @@ export default function Index({ auth, notes }) {
                         <PrimaryButton className="mt-4" disabled={processing}>New Note</PrimaryButton>
                     </form>
                 </div>
-            </div>
 
-            <div className="grid grid-cols-5 gap-4 mx-10 my-5">
+
                 {notes.map(note =>
                     <Note key={note.id} note={note}/>
                 )}
