@@ -7,7 +7,8 @@ import Label from "@/Components/Label.jsx";
 
 export default function Index({ auth, labels }) {
     const { data, setData, post, processing, reset, errors } = useForm({
-        message: '',
+        bg_color: '#FFFFFF',
+        font_color: '#000000'
     });
 
     const submit = (e) => {

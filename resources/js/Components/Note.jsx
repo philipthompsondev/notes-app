@@ -56,6 +56,9 @@ export default function Note({ note }) {
                                     onClick={() => setEditing(true)}>
                                     Edit
                                 </button>
+                                <Dropdown.Link as="button" href={route('notes.destroy', note.id)} method="delete">
+                                    Delete
+                                </Dropdown.Link>
                             </Dropdown.Content>
                         </Dropdown>
                     }
@@ -63,68 +66,69 @@ export default function Note({ note }) {
 
                 {editing
                     ?
-                    <div id="default-modal" tabIndex="-1" aria-hidden="true"
-                         className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                        <div className="relative p-4 w-full max-w-2xl max-h-full">
-                            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                <form onSubmit={submit}>
-                                    <input
-                                        type="text"
-                                        name="title"
-                                        placeholder="Note Title"
-                                        value={data.title}
-                                        onChange={e => setData('title', e.target.value)}
-                                        className="w-full mb-2 p-2 text-gray-900 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></input>
+                        <div id="default-modal" tabIndex="-1" aria-hidden="true"
+                             className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div className="relative p-4 w-full max-w-2xl max-h-full">
+                                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                    <form onSubmit={submit}>
+                                        <input
+                                            type="text"
+                                            name="title"
+                                            placeholder="Note Title"
+                                            value={data.title}
+                                            onChange={e => setData('title', e.target.value)}
+                                            className="w-full mb-2 p-2 text-gray-900 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></input>
 
-                                    <textarea
-                                        name="message"
-                                        placeholder="Write something down."
-                                        value={data.message}
-                                        onChange={e => setData('message', e.target.value)}
-                                        className="w-full h-full p-2 mb-2 text-gray-900 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    ></textarea>
+                                        <textarea
+                                            name="message"
+                                            placeholder="Write something down."
+                                            value={data.message}
+                                            onChange={e => setData('message', e.target.value)}
+                                            className="w-full h-full p-2 mb-2 text-gray-900 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                        ></textarea>
 
+                                        <div className="grid grid-cols-2">
+                                            <div className="col-span-1">
+                                                <label htmlFor="bg_color" className="text-black">BG Color:</label>
+                                                <input name='bg_color'
+                                                       id='bg_color'
+                                                       type="color"
+                                                       value={bgColor}
+                                                       onChange={handleBgColorChange}
+                                                />
+                                            </div>
 
-                                    <div className="grid grid-cols-2">
-                                        <div className="col-span-1">
-                                            <label htmlFor="bg_color" className="text-black">BG Color:</label>
-                                            <input name='bg_color'
-                                                   id='bg_color'
-                                                   type="color"
-                                                   value={bgColor}
-                                                   onChange={handleBgColorChange}
-                                            />
+                                            <div className="col-span-1">
+                                                <label htmlFor="font_color" className="text-black">Font Color:</label>
+                                                <input name='font_color'
+                                                       id='font_color'
+                                                       type="color"
+                                                       value={fontColor}
+                                                       onChange={handleFontColorChange}
+                                                />
+                                            </div>
                                         </div>
 
-                                        <div className="col-span-1">
-                                            <label htmlFor="font_color" className="text-black">Font Color:</label>
-                                            <input name='font_color'
-                                                   id='font_color'
-                                                   type="color"
-                                                   value={fontColor}
-                                                   onChange={handleFontColorChange}
-                                            />
+                                        <InputError message={errors.title} className="mt-2"/>
+                                        <InputError message={errors.message} className="mt-2"/>
+                                        <InputError message={errors.bg_color} className="mt-2"/>
+                                        <InputError message={errors.font_color} className="mt-2"/>
+
+                                        <div className="space-x-2">
+                                            <PrimaryButton className="mt-4">Save</PrimaryButton>
+                                            <button className="mt-4 text-black" onClick={() => {
+                                                setEditing(false);
+                                                reset();
+                                                clearErrors();
+                                            }}>Cancel
+                                            </button>
                                         </div>
-                                    </div>
-
-                                    <InputError message={errors.message} className="mt-2"/>
-
-                                    <div className="space-x-2">
-                                        <PrimaryButton className="mt-4">Save</PrimaryButton>
-                                        <button className="mt-4 text-black" onClick={() => {
-                                            setEditing(false);
-                                            reset();
-                                            clearErrors();
-                                        }}>Cancel
-                                        </button>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
                     :
-                    <p className="col-span-4">{note.message}</p>
+                        <p className="col-span-4">{note.message}</p>
                 }
 
             </div>

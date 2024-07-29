@@ -48,9 +48,8 @@ export default function Index({ auth, notes }) {
                         <textarea
                             name="message"
                             placeholder="Write something down."
-                            value={data.message}
                             onChange={e => setData('message', e.target.value)}
-                            className="w-full h-full p-2 mb-2  border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            className="w-full h-full p-2 mb-2 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         ></textarea>
 
                         <div className="grid grid-cols-2">
@@ -74,7 +73,6 @@ export default function Index({ auth, notes }) {
                                 />
                             </div>
                         </div>
-
 
                         <InputError message={errors.title} className="mt-2"/>
                         <InputError message={errors.message} className="mt-2"/>
