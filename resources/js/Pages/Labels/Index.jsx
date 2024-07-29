@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { useForm, Head } from '@inertiajs/react';
-import Label from "@/Components/Label.jsx";
+import Label from "@/Components/Labels/Label.jsx";
 
 export default function Index({ auth, labels }) {
     const { data, setData, post, processing, reset, errors } = useForm({

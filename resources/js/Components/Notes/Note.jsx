@@ -3,6 +3,7 @@ import Dropdown from "@/Components/Dropdown.jsx";
 import {useForm, usePage} from "@inertiajs/react";
 import InputError from "@/Components/InputError.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
+import Label from "@/Components/Labels/Label.jsx";
 
 export default function Note({ note }) {
     const { auth } = usePage().props;
@@ -63,6 +64,12 @@ export default function Note({ note }) {
                         </Dropdown>
                     }
                 </div>
+
+                <p className="col-span-4">{note.message}</p>
+
+                {/*{labels.map(note =>*/}
+                {/*    <Label key={label.id} label={label}/>*/}
+                {/*)}*/}
 
                 {editing
                     ?
@@ -128,7 +135,7 @@ export default function Note({ note }) {
                             </div>
                         </div>
                     :
-                        <p className="col-span-4">{note.message}</p>
+                    <div></div>
                 }
 
             </div>

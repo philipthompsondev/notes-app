@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { useForm, Head } from '@inertiajs/react';
-import Note from '@/Components/Note';
+import Note from '@/Components/Notes/Note.jsx';
 
 export default function Index({ auth, notes }) {
     const { data, setData, post, processing, reset, errors } = useForm({
