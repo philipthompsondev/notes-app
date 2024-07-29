@@ -7,7 +7,8 @@ import Note from '@/Components/Note';
 
 export default function Index({ auth, notes }) {
     const { data, setData, post, processing, reset, errors } = useForm({
-
+        bg_color: '#FFFFFF',
+        font_color: '#000000'
     });
 
     const submit = (e) => {

@@ -11,8 +11,8 @@ export default function Note({ note }) {
     const { data, setData, patch, clearErrors, reset, errors } = useForm({
         title: note.title,
         message: note.message,
-        bgColor: note.bg_color,
-        fontColor: note.font_color
+        bg_color: note.bg_color,
+        font_color: note.font_color,
     });
 
     const submit = (e) => {
@@ -33,7 +33,6 @@ export default function Note({ note }) {
         setFontColor(event.target.value);
         setData('font_color', event.target.value);
     }
-    console.log(bgColor)
 
     return (
         <div className="rounded-lg px-2 py-2" style={{backgroundColor: note.bg_color, color: note.font_color}}>
@@ -75,7 +74,6 @@ export default function Note({ note }) {
                                         placeholder="Note Title"
                                         value={data.title}
                                         onChange={e => setData('title', e.target.value)}
-                                        onSubmit={e => setData('title', e.target.value)}
                                         className="w-full mb-2 p-2 text-gray-900 border border-slate-300 rounded-md shadow focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></input>
 
                                     <textarea
@@ -93,7 +91,7 @@ export default function Note({ note }) {
                                             <input name='bg_color'
                                                    id='bg_color'
                                                    type="color"
-                                                   value={data.bgColor}
+                                                   value={bgColor}
                                                    onChange={handleBgColorChange}
                                             />
                                         </div>
@@ -103,7 +101,7 @@ export default function Note({ note }) {
                                             <input name='font_color'
                                                    id='font_color'
                                                    type="color"
-                                                   value={data.font_color}
+                                                   value={fontColor}
                                                    onChange={handleFontColorChange}
                                             />
                                         </div>
