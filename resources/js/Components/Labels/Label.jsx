@@ -41,7 +41,8 @@ export default function Label({ label }) {
                         <div id="default-modal" tabIndex="-1" aria-hidden="true"
                              className="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div className="relative p-4 w-full max-w-2xl max-h-full">
-                                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700 p-4 text-gray-900">
+                                    <h3 className="pb-4">Label Edit</h3>
                                     <form onSubmit={submit}>
                                         <input
                                             type="text"
@@ -97,7 +98,7 @@ export default function Label({ label }) {
                 <Dropdown>
                     <Dropdown.Trigger>
                         <button>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400"
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4"
                                  viewBox="0 0 20 20" fill="currentColor">
                                 <path
                                     d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"/>
